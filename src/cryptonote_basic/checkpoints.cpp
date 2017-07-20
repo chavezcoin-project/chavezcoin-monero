@@ -177,16 +177,10 @@ namespace cryptonote
     std::vector<std::string> records;
 
     // All four ChavezcoinPulse domains have DNSSEC on and valid
-    static const std::vector<std::string> dns_urls = { "checkpoints.chavezcoinpulse.se"
-						     , "checkpoints.chavezcoinpulse.org"
-						     , "checkpoints.chavezcoinpulse.net"
-						     , "checkpoints.chavezcoinpulse.co"
+    static const std::vector<std::string> dns_urls = { ""
     };
 
-    static const std::vector<std::string> testnet_dns_urls = { "testpoints.chavezcoinpulse.se"
-							     , "testpoints.chavezcoinpulse.org"
-							     , "testpoints.chavezcoinpulse.net"
-							     , "testpoints.chavezcoinpulse.co"
+    static const std::vector<std::string> testnet_dns_urls = { ""
     };
 
     if (!tools::dns_utils::load_txt_records_from_dns(records, testnet ? testnet_dns_urls : dns_urls))
