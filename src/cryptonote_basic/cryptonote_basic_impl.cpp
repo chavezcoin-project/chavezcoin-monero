@@ -88,10 +88,24 @@ namespace cryptonote {
   //-----------------------------------------------------------------------------------------------
   bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, uint8_t version) {
     // Pre-mine chavezcoin
-    uint64_t base_reward = MONEY_SUPPLY - already_generated_coins;
+    if (already_generated_coins == 0) {
+      uint64_t base_reward = 500000000;
+      reward = base_reward;
+      LOG_PRINT_L1("First block: " << reward << " with generated coin: " << already_generated_coins);
+      return true;
+    }
+    else if(already_generated_coins >= 500000000) {
+      uint64_t base_reward = MONEY_SUPPLY - already_generated_coins;
+      reward = base_reward;
+      LOG_PRINT_L1("Success reward: " << reward << " - " << already_generated_coins);
+      return true;
+    }
+    else
+    {
+      LOG_PRINT_L1("Fail reward: " << already_generated_coins);
+      return false;
+    }
 
-    reward = base_reward;
-    return true;
   }
   //------------------------------------------------------------------------------------
   uint8_t get_account_address_checksum(const public_address_outer_blob& bl)
