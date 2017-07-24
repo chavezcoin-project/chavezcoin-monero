@@ -87,7 +87,7 @@ namespace cryptonote {
   }
   //-----------------------------------------------------------------------------------------------
   bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, uint8_t version) {
-    // Pre-mine chavezcoin 
+    // Pre-mine chavezcoin
     if (already_generated_coins == 0) {
       uint64_t base_reward = 500000000;
       reward = base_reward;
