@@ -94,8 +94,14 @@ namespace cryptonote {
       LOG_PRINT_L1("First block: " << reward << " with generated coin: " << already_generated_coins);
       return true;
     }
-    else if(already_generated_coins >= 500000000) {
-      uint64_t base_reward = MONEY_SUPPLY - already_generated_coins;
+    else if(already_generated_coins < 1000000000) {
+      uint64_t base_reward = already_generated_coins + 100000000;
+      reward = base_reward;
+      LOG_PRINT_L1("Success reward: " << reward << " + " << already_generated_coins);
+      return true;
+    }
+    else if(already_generated_coins >= 1000000000) {
+      uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) >> 1;
       reward = base_reward;
       LOG_PRINT_L1("Success reward: " << reward << " - " << already_generated_coins);
       return true;
